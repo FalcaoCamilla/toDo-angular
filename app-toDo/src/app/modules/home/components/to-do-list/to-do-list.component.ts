@@ -18,6 +18,7 @@ export class ToDoListComponent implements DoCheck {
 
   ngDoCheck(){
     this.setLocalStorage();
+    console.log('houve mudança')
   }
 
   public setEmitTaskList(event: string){
