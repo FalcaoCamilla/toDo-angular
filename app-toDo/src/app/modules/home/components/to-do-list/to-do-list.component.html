@@ -7,8 +7,8 @@
             <!--para cada item do array taskList,
         deve ser criado um input do tipo checkbox e um input do tipo texto-->
             <input type="checkbox" [(ngModel)]="item.checked">
-            <input type="text" [(ngModel)]="item.task">
-
+            <input type="text" (keyup)="validationInput(item.task, i)" [(ngModel)]="item.task" [ngClass]="{'checked': item.checked}">
+            <!--ngClass recebe checked caso o item.checked for igual a true-->
             <button (click)="deleteItemTaskList(i)"> 
                 <!--evento para usar o splice no item de índice i-->
                 <img src='../../../../../assets/icons/icon-trash.svg'>
@@ -21,5 +21,6 @@
 </section>
 
 <app-to-do-input-add-itens (emitItemTaskList)="setEmitTaskList($event)"></app-to-do-input-add-itens>
+<!--o $event é o valor que o output passa-->
 <app-to-do-button-delete-all *ngIf="taskList.length"  (click)="deleteAllTaskList()"></app-to-do-button-delete-all>
 <!--o botão delete all só aparece se a lista estiver vazia-->
