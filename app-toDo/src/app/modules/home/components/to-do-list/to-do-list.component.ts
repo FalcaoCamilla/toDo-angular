@@ -10,13 +10,14 @@ import { TaskList } from '../../model/task-list';
 })
 export class ToDoListComponent implements DoCheck {
 
-  public taskList: Array<TaskList> = [];
+  public taskList: Array<TaskList> = JSON.parse(localStorage.getItem("list") || '[]');
+  //verifica se no localStorage há algum valor e dá um parse nele, transformando ele em objeto novamente
+  //se estiver vazio, salva e pega o valor como array
 
   constructor() { }
 
   ngDoCheck(){
-    this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked))
-    //o primeiro item vira um número, que, se checado, vai para baixo
+    this.setLocalStorage();
   }
 
   public setEmitTaskList(event: string){
@@ -45,4 +46,12 @@ export class ToDoListComponent implements DoCheck {
     }
   }
 
+  public setLocalStorage(){
+    if(this.taskList){
+    this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked))
+    //o primeiro item vira um número, que, se checado, vai para baixo
+    localStorage.setItem("list", JSON.stringify(this.taskList));
+    //guardar os dados no localStorage. Apenas asa strings são guardadas, então o JSON.stringify deve convertê-lo antes
+    }
+  }
 }
