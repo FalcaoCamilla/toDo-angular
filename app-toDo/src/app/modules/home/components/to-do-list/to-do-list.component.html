@@ -20,6 +20,6 @@
 
 </section>
 
-<app-to-do-input-add-itens></app-to-do-input-add-itens>
+<app-to-do-input-add-itens (emitItemTaskList)="setEmitTaskList($event)"></app-to-do-input-add-itens>
 <app-to-do-button-delete-all *ngIf="taskList.length"  (click)="deleteAllTaskList()"></app-to-do-button-delete-all>
 <!--o botão delete all só aparece se a lista estiver vazia-->
