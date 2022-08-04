@@ -25,4 +25,11 @@ export class ToDoListComponent implements OnInit {
     //removendo um elemento a partir do valor recebido no html
   }
 
+  public deleteAllTaskList(){
+    const confirm = window.confirm("Você deseja realmente deletar tudo?");
+    if(confirm){
+      this.taskList= [];
+    }
+  }
+
 }
